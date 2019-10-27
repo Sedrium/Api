@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using TodoApi.DataBaseOperation;
 using TodoApi.Dto;
+using TodoApi.Servies;
 
 namespace TodoApi.DataBaseAccess
 {
-    public class DataAccess <TypeOfClass> where TypeOfClass : new()
+    public class ProductDao <TypeOfClass> : IProductDao<TypeOfClass> where TypeOfClass : new()
     {
-        public DataAccess()
+        public ProductDao()
         {
             _dataChanger = new DataChanger<TypeOfClass>();
             _dataProspector = new DataProspector<TypeOfClass>();

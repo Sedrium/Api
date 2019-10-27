@@ -10,7 +10,6 @@ using System.Net;
 using Microsoft.AspNetCore.Http;
 using TodoApi.Validators;
 using TodoApi.Model;
-using TodoApi.Dao;
 using TodoApi.Servies;
 using FluentValidation.Results;
 using System.Text;
@@ -22,12 +21,11 @@ namespace TodoApi.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        public ProductsController()
+        public ProductsController(IProductService _IProductService)
         {
-            _productService = new ProductService();
+            this._IProductService = _IProductService;
         }
-        private ProductService _productService;
-
+        private readonly IProductService _IProductService;
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<ProductCreateInputModel>> Get()
@@ -35,7 +33,7 @@ namespace TodoApi.Controllers
             List<ProductCreateInputModel> collectionResult = null;
             try
             {
-                collectionResult = _productService.GetProductCollection();
+                collectionResult = _IProductService.GetProductCollection();
             }
             catch (Exception e)
             {
@@ -52,7 +50,7 @@ namespace TodoApi.Controllers
             try
             {
                 ProductControllerHelperMethods.ValidIdProperty(id);
-                valueResult = _productService.GetProduct(id);
+                valueResult = _IProductService.GetProduct(id);
             }
             catch (Exception e)
             {
@@ -70,7 +68,7 @@ namespace TodoApi.Controllers
             try
             {
                 ProductControllerHelperMethods.ValidModel(model, true);
-                idOfCreatedObject = _productService.SetProduct(model);
+                idOfCreatedObject = _IProductService.SetProduct(model);
             }
             catch (Exception e)
             {
@@ -86,7 +84,7 @@ namespace TodoApi.Controllers
             try
             {
                 ProductControllerHelperMethods.ValidModel(model, false);
-                _productService.EditProduct(model);
+                _IProductService.EditProduct(model);
             }
             catch (Exception e)
             {
@@ -102,7 +100,7 @@ namespace TodoApi.Controllers
             try
             {
                 ProductControllerHelperMethods.ValidIdProperty(id);
-                _productService.RemoveProduct(id);
+                _IProductService.RemoveProduct(id);
             }
             catch (Exception e)
             {

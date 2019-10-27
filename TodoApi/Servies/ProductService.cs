@@ -8,15 +8,13 @@ using TodoApi.Model;
 
 namespace TodoApi.Servies
 {
-    public class ProductService
+    public class ProductService : IProductService
     {
-        public ProductService()
+        public ProductService(IProductDao<Product> _IProductDao)
         {
-            _dataAccess = new DataAccess<Product>();
+            this._IProductDao = _IProductDao;
         }
-
-
-        private DataAccess<Product> _dataAccess;
+        private readonly IProductDao<Product> _IProductDao;
 
 
         public List<ProductCreateInputModel> GetProductCollection()
@@ -36,7 +34,7 @@ namespace TodoApi.Servies
         {
             model.Id = Guid.NewGuid();
             Product modelProduct = MapModelProductToDataProduct(model);
-            _dataAccess.Create(modelProduct);
+            _IProductDao.Create(modelProduct);
             return model.Id;
         }
 
@@ -44,19 +42,19 @@ namespace TodoApi.Servies
         {
             GetProductIfExist(model.Id);
             Product modelProduct = MapModelProductToDataProduct(model);
-            _dataAccess.Update(modelProduct);
+            _IProductDao.Update(modelProduct);
         }
 
         public void RemoveProduct(Guid id)
         {
             GetProductIfExist(id);
-            _dataAccess.Delete(id.ToString());
+            _IProductDao.Delete(id.ToString());
         }
 
 
         private List<Product> GetProductList()
         {
-            var listOfProductDB = _dataAccess.Read();
+            var listOfProductDB = _IProductDao.Read();
             if (listOfProductDB.Count == 0)
                 throw new Exception("Error204Table is empty");
             return listOfProductDB;
@@ -64,7 +62,7 @@ namespace TodoApi.Servies
 
         private Product GetProductIfExist(Guid id)
         {
-            var listOfProductDB = _dataAccess.Read();
+            var listOfProductDB = _IProductDao.Read();
             var foundProduct = listOfProductDB.Find(product => product.Id == id.ToString());
             if (foundProduct == null)
                 throw new Exception("Error404There is no record");

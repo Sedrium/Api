@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\macie\\Desktop\\Build\\TodoApi\\TodoApi.csproj": {}
+    "C:\\Users\\macie\\source\\repos\\TodoApi\\TodoApi\\TodoApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\macie\\Desktop\\Build\\TodoApi\\TodoApi.csproj": {
+    "C:\\Users\\macie\\source\\repos\\TodoApi\\TodoApi\\TodoApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\macie\\Desktop\\Build\\TodoApi\\TodoApi.csproj",
+        "projectUniqueName": "C:\\Users\\macie\\source\\repos\\TodoApi\\TodoApi\\TodoApi.csproj",
         "projectName": "TodoApi",
-        "projectPath": "C:\\Users\\macie\\Desktop\\Build\\TodoApi\\TodoApi.csproj",
+        "projectPath": "C:\\Users\\macie\\source\\repos\\TodoApi\\TodoApi\\TodoApi.csproj",
         "packagesPath": "C:\\Users\\macie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\macie\\Desktop\\Build\\TodoApi\\obj\\",
+        "outputPath": "C:\\Users\\macie\\source\\repos\\TodoApi\\TodoApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
